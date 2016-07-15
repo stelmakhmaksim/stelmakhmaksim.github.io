@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Личный сайт студента GeekBrains</title>
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+	function guess(){
+		var countTry=1;
+		var answer = Math.floor(Math.random()*100)+1;
+		do{
+			var userAnswer = prompt('Ходит игрок 1. Введите число от 1 до 100. Для выхода нажмите q.');
+			if(userAnswer=='q')
+				break;
+			var bool=player(1,answer,userAnswer);
+			if(bool==0){
+				countTry++;
+			}else{ alert('Игра окончена. Выиграл игрок 1! Поздравляю!!! Вы угадали с '+ countTry + ' раза.');
+				break;
+			}
+			userAnswer = prompt('Ходит игрок 2. Введите число от 1 до 100. Для выхода нажмите q.');
+			if(userAnswer=='q')
+				break;
+			bool=player(2,answer,userAnswer);
+			if(bool==0)
+				countTry++;
+			else alert('Игра окончена. Выиграл игрок 2! Поздравляю!!! Вы угадали с '+ countTry + ' раза.');
+		}while(bool==0);
+	}
+
+	function player(number,answer,userAnswer){
+		if((userAnswer>0 && userAnswer<101) || userAnswer=='q'){
+			if(answer==userAnswer){
+				return true;
+			}
+			if(answer>userAnswer){
+				alert('Вы ввели слишком маленькое число. Очередь другого игрока.');
+				return false;
+			}
+			if(answer<userAnswer){
+				alert('Вы ввели слишком большое число. Очередь другого игрока.');
+				return false;
+			}
+			if(userAnswer=='q')
+				return true;
+		}
+		else{
+			alert('Ну я же просил, число от 1 до 100!!!');
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+
+<div id="tooplate_body_wrapper" />
+<div id="tooplate_wrapper" />
+<div id="tooplate_header">
+	<div id="site_title">
+		<h1><a href="http://geekbrains.ru">GeekBrains</a></h1>
+	</div>
+	<div id="tooplate_menu">
+		<ul>
+			<li><a href="index.html">Главная</a></li>
+			<li><a href="puzzle.html">Загадки</a></li>
+			<li><a href="guess.html">Угадайка</a></li>
+			<li><a href="guess_multi.html">Угадайка Мультиплеер</a></li>
+		</ul>    	
+	</div>
+</div>
+    
+<div id="content_box">
+		
+	<div id="content_title">
+		<h2>Угадайка</h2>
+	</div>
+	<div id="content">
+		<p>Я загадал число от 1 до 100. Попробуйте отгадать!</p>
+		<p>Игра рассчитана на 2-х игроков. Игроки ходят по очереди. После каждой попытки вы узнаете, правильный ответ больше или меньше твоего ответа. Кто угадает раньше - тот и выиграл!</p>
+		<p>Удачи!</p>
+		<input type="button" value="Начать игру" onClick="guess()"/>
+	</div>
+           
+    <div id="tooplate_footer">    
+        Copyright © 2016 <a href="http://geekbrains.ru">GeekBrains</a>
+    </div>
+    
+</div>
+
+</body>
+</html>
